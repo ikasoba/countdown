@@ -81,7 +81,7 @@ function createGenerator() {
     e("br", {}),
     e("label", {},
       "カウントダウンの終了時刻:",
-      e("input", { type: "date", name: "ct" })
+      e("input", { type: "datetime-local", name: "ct" })
     ),
     e("br", {}),
     e("label", {},
