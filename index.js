@@ -1,5 +1,5 @@
 function kirisute(num, len = 2) {
-  const [i, d] = (Math.floor(num * 10 ** len) / 10 ** len).toString().split(".");
+  let [i, d] = (Math.floor(num * 10 ** len) / 10 ** len).toString().split(".");
   d ||= "";
   return `${i}.${d.padStart(len, "0")}`;
 }
