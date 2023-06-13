@@ -1,5 +1,7 @@
 function kirisute(num, len = 2) {
-  return Math.floor(num * 10 ** len) / 10 ** len;
+  const [i, d] = (Math.floor(num * 10 ** len) / 10 ** len).toString().split(".");
+  d ||= "";
+  return `${i}.${d.padStart(len, "0")}`;
 }
 
 function getDiff(endDate) {
@@ -23,8 +25,10 @@ function getHumanReadable(time) {
     return `${kirisute(time / 1000 / 60 / 60, 0)}時間`;
   } else if (time >= 1000 * 60) {
     return `${kirisute(time / 1000 / 60, 2)}分`;
-  } else if (time >= 1000) {
+  } else if (time) {
     return `${kirisute(time / 1000, 3)}秒`;
+  } else {
+    return "0秒";
   }
 }
 
@@ -43,18 +47,18 @@ function createCounter(endDate, message) {
   const e = document.createElement("div");
   e.id = "counter";
 
-  const setTextSize = () => {
-    e.style.fontSize = `${100 / ((e.innerText.length + e.innerText.match(/[一-龠]+|[ぁ-ゔ]+|[ァ-ヴー]+|[ａ-ｚＡ-Ｚ０-９]+|[々〆〤ヶ]+/ug)?.length ?? 0))}vw`
+  const setText = (text) => {
+    if (text == e.innerText) return;
+    e.style.fontSize = `${100 / ((text.length + text.match(/[一-龠]+|[ぁ-ゔ]+|[ァ-ヴー]+|[ａ-ｚＡ-Ｚ０-９]+|[々〆〤ヶ]+/ug)?.length ?? 0))}vw`;
+    e.innerText = text;
   }
 
   const draw = () => {
     const diff = getDiff(endDate);
     if (diff == null) {
-      e.innerText = message ?? "終了！";
-      setTextSize();
+      setText(message || "終了！");
     } else {
-      e.innerText = `あと${getHumanReadable(diff)}`;
-      setTextSize();
+      setText(`あと${getHumanReadable(diff)}`);
 
       setTimeout(draw, 16);
     }
