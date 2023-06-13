@@ -89,7 +89,9 @@ function createGenerator() {
       e("input", { type: "text", name: "cm" })
     ),
     e("br", {}),
-    e("input", { type: "submit" })
+    e("input", { type: "submit" }),
+    e("br", {}),
+    e("a", { href: "https://github.com/ikasoba/countdown" }, "repository")
   );
 }
 
