@@ -1,7 +1,7 @@
 function kirisute(num, len = 2) {
   let [i, d] = (Math.floor(num * 10 ** len) / 10 ** len).toString().split(".");
   d ||= "";
-  return `${i}.${d.padStart(len, "0")}`;
+  return `${i}${d ? "." + d.padStart(len, "0") : ""}`;
 }
 
 function getDiff(endDate) {
