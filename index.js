@@ -16,13 +16,13 @@ function getDiff(endDate) {
 
 function getHumanReadable(time) {
   if (time >= 1000 * 60 * 60 * 24 * 365) {
-    return `${kirisute(time / 1000 / 60 / 60 / 24 / 365, 0)}年`;
+    return `${Math.round(time / 1000 / 60 / 60 / 24 / 365)}年`;
   } else if (time >= 1000 * 60 * 60 * 24 * 30) {
-    return `${kirisute(time / 1000 / 60 / 60 / 24 / 30, 0)}ヶ月`;
+    return `${Math.round(time / 1000 / 60 / 60 / 24 / 30)}ヶ月`;
   } else if (time >= 1000 * 60 * 60 * 24) {
-    return `${kirisute(time / 1000 / 60 / 60 / 24, 0)}日`;
+    return `${Math.round(time / 1000 / 60 / 60 / 24)}日`;
   } else if (time >= 1000 * 60 * 60) {
-    return `${kirisute(time / 1000 / 60 / 60, 0)}時間`;
+    return `${Math.round(time / 1000 / 60 / 60)}時間`;
   } else if (time >= 1000 * 60) {
     return `${kirisute(time / 1000 / 60, 2)}分`;
   } else if (time) {
